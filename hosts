@@ -1,0 +1,10 @@
+[WebServer]
+web_1 ansible_host=15.206.158.229  ansible_connection=ssh ansbile_user=root ansible.ssh_private_key_file=/home/ec2-user/Project_Mario_game.pem
+
+
+[Database1]
+db_1 ansible_host=13.233.149.159  ansible_connection=ssh ansbile_user=root ansible.ssh_private_key_file=/home/ec2-user/Project_Mario_game.pem
+
+[Database]
+13.127.40.132  ansible_user=ubuntu  ansible.ssh_private_key_file=/home/ec2-user/Project_Mario_game.pem
+

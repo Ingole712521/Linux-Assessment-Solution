@@ -1,0 +1,27 @@
+---
+- name: Create MySQL database and user
+  hosts: Database
+  become: true
+  vars:
+    db_name: "nehal"
+    db_user: "root"
+    db_password: "123"
+  tasks:
+    - name: Install MySQL client package
+      apt:
+        name: mysql-client
+        state: present
+
+    - name: Create MySQL database
+      mysql_db:
+        name: "{{ db_name }}"
+        state: present
+
+    - name: Create MySQL user
+      mysql_user:
+        name: "{{ db_user }}"
+        password: "{{ db_password }}"
+        priv: "{{ db_name }}.*:ALL"
+        host: localhost
+        state: present
+

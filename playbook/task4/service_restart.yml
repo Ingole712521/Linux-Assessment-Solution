@@ -1,0 +1,11 @@
+---
+- name: WebServers
+  hosts: WebServer
+  become: true
+
+  tasks:
+    - name: Restart Nginx service
+      service:
+        name: nginx
+        state: restarted
+

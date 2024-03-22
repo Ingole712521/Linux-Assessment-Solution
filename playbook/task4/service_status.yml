@@ -1,0 +1,15 @@
+---
+- name: Verify MySQL service status on all database servers
+  hosts: Database
+  become: true
+  tasks:
+    - name: Check MySQL service status
+      service:
+        name: mysql
+        state: "started"
+      register: mysql_service_status
+
+    - name: Display MySQL service status
+      debug:
+        msg: "MySQL service is {{ mysql_service_status.state }}"
+

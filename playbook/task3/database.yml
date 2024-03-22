@@ -1,0 +1,32 @@
+---
+- name: Install MySQL on Ubuntu
+  hosts: Database
+  become: yes
+  vars:
+    mysql_root_password: "123"
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install MySQL server
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Configure MySQL root password
+      debconf:
+        name: mysql-server
+        question: "mysql-server/root_password"
+        value: "{{ mysql_root_password }}"
+        vtype: "password"
+      register: mysql_root_password_output
+
+    - name: Confirm MySQL root password
+      debconf:
+        name: mysql-server
+        question: "mysql-server/root_password_again"
+        value: "{{ mysql_root_password }}"
+        vtype: "password"
+      when: mysql_root_password_output.changed
+

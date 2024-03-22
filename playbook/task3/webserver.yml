@@ -1,0 +1,17 @@
+---
+- name: Install and Configure Nginx on Webservers
+  hosts: WebServer
+  become: true
+
+  tasks:
+    - name: Install Nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
